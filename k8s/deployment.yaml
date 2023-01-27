@@ -51,7 +51,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: perovano/blog:v3
+        image: perovano/kube-news:{{TAG}}
         ports:
         - containerPort: 3000
         env:
