@@ -6,7 +6,7 @@ pipeline{
         stage ('Build Docker Image'){
             steps{
                 script{
-                    dockerapp = docker.build("perovano/kube-news:${env.BUILD_ID}", "-f ./Dockerfile .")
+                    dockerapp = docker.build("perovano/kube-news:v${env.BUILD_ID}", "-f ./Dockerfile .")
                 }
             }
         }
@@ -16,7 +16,7 @@ pipeline{
                 script{
                     dockerapp = docker.withRegistry("https://registry.hub.docker.com", 'dockerhub'){
                         dockerapp.push('latest')
-                        dockerapp.push("${env.BUILD_ID}")
+                        dockerapp.push("v${env.BUILD_ID}")
                     }
                 }
             }
